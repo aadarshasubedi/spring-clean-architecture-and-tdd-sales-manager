@@ -1,8 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Company} from "@devbhuwan-salesmanager/sales-model";
 
 @Injectable()
 export class CompanyService {
 
-constructor() { }
+    constructor() {
+        const a: Company = {
+            id: '213'
+        };
+    }
 
 }
