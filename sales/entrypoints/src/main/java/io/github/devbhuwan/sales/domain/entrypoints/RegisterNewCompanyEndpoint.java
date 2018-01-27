@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.domain.entrypoints;
 
-import io.github.devbhuwan.sales.domain.usecase.registernewcompany.RegisterNewCompanyRequest;
-import io.github.devbhuwan.sales.domain.usecase.registernewcompany.RegisterNewCompanyUseCase;
+import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyRequest;
+import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyUseCase;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

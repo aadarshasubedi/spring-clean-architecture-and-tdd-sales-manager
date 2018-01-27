@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.domain.entrypoints;
 
-import io.github.devbhuwan.sales.domain.usecase.registernewcompany.RegisterNewCompanyResponse;
-import io.github.devbhuwan.sales.domain.usecase.registernewcompany.RegisterNewCompanyResponseModel.Violation;
+import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyResponse;
+import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyResponseModel.Violation;
 
 import java.util.Collection;
 import java.util.Collections;
