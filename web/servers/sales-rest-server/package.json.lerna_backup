@@ -1,0 +1,28 @@
+{
+  "name": "@devbhuwan-salesmanager/sales-rest-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "clean": "npm install rimraf && rimraf build",
+    "build": "tsc --outDir build",
+    "prod": "npm run build",
+    "prepublish": "npm run build",
+    "lint": "tslint \"src/**/*.ts\"",
+    "debug": "node-debug build/main.js",
+    "start": "node build/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "go": "npm run build && npm run start"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^9.4.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "json-server": "^0.12.1",
+    "sse-channel": "^3.0.1"
+  }
+}
