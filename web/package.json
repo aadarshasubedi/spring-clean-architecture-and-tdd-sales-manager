@@ -8,12 +8,8 @@
     "clean": "lerna clean --yes && node rimraf-standalone.js node_modules \"**/yarn-*.log\" \"**/lerna-*.log\" \"**/npm-*.log\"",
     "postinstall": "lerna bootstrap",
     "run:admin": "lerna run start --stream --scope @devbhuwan-salesmanager/admin",
-    "run:agent": "lerna run start --stream --scope @devbhuwan-salesmanager/agent",
-    "run:portal": "lerna run start --stream --scope @devbhuwan-salesmanager/portal",
     "run:server": "lerna run start --stream --scope @devbhuwan-salesmanager/sales-rest-server",
-    "admin": "run-p -l run:admin run:server",
-    "agent": "run-p -l run:agent run:server",
-    "portal": "run-p -l run:portal run:server"
+    "admin": "run-p -l run:admin run:server"
   },
   "devDependencies": {
     "@angular/common": "^5.0.0",
