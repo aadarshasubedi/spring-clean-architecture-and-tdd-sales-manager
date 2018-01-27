@@ -10,7 +10,7 @@
     "run:admin": "lerna run start --stream --scope @devbhuwan-salesmanager/admin",
     "run:agent": "lerna run start --stream --scope @devbhuwan-salesmanager/agent",
     "run:portal": "lerna run start --stream --scope @devbhuwan-salesmanager/portal",
-    "run:server": "lerna run start --stream --scope @devbhuwan-salesmanager/sale-rest-server",
+    "run:server": "lerna run start --stream --scope @devbhuwan-salesmanager/sales-rest-server",
     "admin": "run-p -l run:admin run:server",
     "agent": "run-p -l run:agent run:server",
     "portal": "run-p -l run:portal run:server"
