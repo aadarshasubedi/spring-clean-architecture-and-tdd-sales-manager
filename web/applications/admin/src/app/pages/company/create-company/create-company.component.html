@@ -1,0 +1,28 @@
+<form [formGroup]="companyForm" (submit)="createCompany(companyForm.value)">
+  <p-panel header="Create Company">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Name *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="name">
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               *ngIf="!companyForm.controls['name'].valid&&companyForm.controls['name'].dirty">
+            <i class="fa fa-close"></i>
+            Firstname is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Submit"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>

@@ -1,24 +1,19 @@
 package io.github.devbhuwan.sales.domain.entrypoints;
 
 import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyResponse;
-import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyResponseModel.Violation;
+import io.github.devbhuwan.sales.domain.model.validation.DomainViolation;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
+import java.util.Set;
 
 public class RegisterNewCompanyResponseRepresentation implements RegisterNewCompanyResponse {
 
-    private Collection<Violation> violations = Collections.emptyList();
+    private Collection<DomainViolation> violations = Collections.emptyList();
 
     @Override
-    public void setViolations(Iterable<Violation> violations) {
-        this.violations = (Collection<Violation>) violations;
-    }
-
-    @Override
-    public boolean isSuccessful() {
-        return !Optional.ofNullable(violations).isPresent();
+    public void setViolations(Set<DomainViolation> violations) {
+        this.violations = violations;
     }
 
 }

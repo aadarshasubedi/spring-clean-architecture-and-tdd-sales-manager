@@ -15,5 +15,12 @@ public class RegisterNewCompanyRequest implements Request {
     @NotBlank
     @Size(max = 20)
     @Capitalized
-    private final String name;
+    private String name;
+    private String address;
+    private String contactPerson;
+    private String country;
+    private String stateCode;
+    private String telephone;
+    private String email;
+    private Integer beginningOfYear;
 }

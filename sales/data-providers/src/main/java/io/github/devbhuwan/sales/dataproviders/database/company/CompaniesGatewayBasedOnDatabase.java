@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-class CompaniesGatewayImpl implements CompaniesGateway {
+class CompaniesGatewayBasedOnDatabase implements CompaniesGateway {
 
     private final CompanyDatabaseDataProvider dataProvider;
     private final CompanyDatabaseEntityMapper mapper;
 
     @Autowired
-    public CompaniesGatewayImpl(CompanyDatabaseDataProvider dataProvider, CompanyDatabaseEntityMapper mapper) {
+    public CompaniesGatewayBasedOnDatabase(CompanyDatabaseDataProvider dataProvider, CompanyDatabaseEntityMapper mapper) {
         this.dataProvider = dataProvider;
         this.mapper = mapper;
     }

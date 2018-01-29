@@ -12,6 +12,7 @@
   "dependencies": {
     "@angular/core": "^5.0.0",
     "@angular/compiler": "^5.0.0",
+    "@angular/http": "^5.0.0",
     "@devbhuwan-salesmanager/sales-model": "*",
     "rxjs": "^5.5.2"
   },

@@ -34,7 +34,7 @@ class RegisterNewCompanyUseCaseImpl implements RegisterNewCompanyUseCase {
         }
     }
 
-    private Iterable<DomainViolation> toViolations(Iterable<ConstraintViolation<RegisterNewCompanyRequest>> violations) {
+    private Set<DomainViolation> toViolations(Iterable<ConstraintViolation<RegisterNewCompanyRequest>> violations) {
         return StreamSupport.stream(violations.spliterator(), false).map(this::toViolation)
                 .collect(Collectors.toSet());
     }
