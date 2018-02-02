@@ -6,6 +6,8 @@ import {CreateCompanyComponent} from './create-company/create-company.component'
 import {PrimeNgInputModule} from '../../external/prime-ng-input.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpRegisterNewCompanyUseCaseEndpointInvoker } from '@devbhuwan-salesmanager/sales-api';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http/src/client';
 
 @NgModule({
   imports: [
@@ -16,7 +18,7 @@ import { HttpRegisterNewCompanyUseCaseEndpointInvoker } from '@devbhuwan-salesma
   ],
   declarations: [CreateCompanyComponent],
   exports: [CreateCompanyComponent],
-  providers: [HttpRegisterNewCompanyUseCaseEndpointInvoker]
+  providers: [Http]
 })
 export class CompanyModule {
 }

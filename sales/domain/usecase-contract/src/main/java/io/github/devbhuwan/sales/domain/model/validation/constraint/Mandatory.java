@@ -1,10 +1,10 @@
 package io.github.devbhuwan.sales.domain.model.validation.constraint;
 
-import io.github.devbhuwan.sales.domain.model.validation.validator.CapitalizedValidator;
+import io.github.devbhuwan.sales.domain.model.validation.validator.MandatoryValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -14,12 +14,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = CapitalizedValidator.class)
+@Constraint(validatedBy = MandatoryValidator.class)
 @Documented
-@NotBlank
-public @interface Capitalized {
-
-    String message() default "io.github.devbhuwan.sales.domain.model.validation.constraint.Capitalized.message";
+@NotNull
+public @interface Mandatory {
+    String message() default "io.github.devbhuwan.sales.domain.model.validation.constraint.Mandatory";
 
     Class<?>[] groups() default {};
 

@@ -20,10 +20,5 @@
     <artifactId>sales</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>io.github.devbhuwan.salesmanager</groupId>
-            <artifactId>entrypoints</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
