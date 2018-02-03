@@ -1,0 +1,27 @@
+<clr-wizard #registerCompanyWizard
+            [clrWizardOpen]="true"
+            (clrWizardOnCancel)="goBackToHome()"
+            (clrWizardOnFinish)="registerCompany()">
+    <clr-wizard-title>Register Your Company</clr-wizard-title>
+    <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Company Detail</ng-template>
+        <clr-alert [clrAlertType]="'alert-info'" [clrAlertClosable]="false">
+            <div class="alert-item">
+                Fill correct information about your company.
+            </div>
+        </clr-alert>
+        <form [formGroup]="companyForm">
+            <section class="form-block">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" formControlName="name">
+                </div>
+            </section>
+        </form>
+    </clr-wizard-page>
+</clr-wizard>

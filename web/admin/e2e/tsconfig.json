@@ -6,23 +6,17 @@
         "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": [
-            "es6",
-            "dom"
-        ],
-        "mapRoot": "src",
         "module": "commonjs",
         "moduleResolution": "node",
-        "outDir": "dist/out-tsc",
+        "outDir": "dist/out-tsc-e2e",
         "sourceMap": true,
         "target": "es5",
         "typeRoots": [
             "node_modules/@types"
         ],
         "types": [
-            "jasmine",
-            "core-js",
-            "node"
+          "jasmine",
+          "jasminewd2"
         ]
     },
     "exclude": [

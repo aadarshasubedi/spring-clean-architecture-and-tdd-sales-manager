@@ -1,14 +1,18 @@
-import { AppPage } from './app.po';
+import {CloudSalesManagerAppHome} from './app.po';
 
-describe('admin App', () => {
-  let page: AppPage;
+fdescribe('cloud-sales-manager app', function () {
 
-  beforeEach(() => {
-    page = new AppPage();
-  });
+    let expectedMsg: string = 'This is a cloud based sales management application. ' +
+        'To start sale your products in the market register your company.';
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to devbhuwan-sales!');
-  });
+    let page: CloudSalesManagerAppHome;
+
+    beforeEach(() => {
+        page = new CloudSalesManagerAppHome();
+    });
+
+    it('should display: ' + expectedMsg, () => {
+        page.navigateTo();
+        expect(page.getParagraphText()).toEqual(expectedMsg);
+    });
 });

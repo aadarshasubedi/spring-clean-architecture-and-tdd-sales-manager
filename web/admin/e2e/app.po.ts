@@ -1,11 +1,12 @@
-import { browser, by, element } from 'protractor';
+import {browser, element, by} from 'protractor';
 
-export class AppPage {
-  navigateTo() {
-    return browser.get('/');
-  }
+export class CloudSalesManagerAppHome {
 
-  getParagraphText() {
-    return element(by.css('devbhuwan-sales-root h1')).getText();
-  }
+    navigateTo() {
+        return browser.get('/');
+    }
+
+    getParagraphText() {
+        return element(by.css('my-app p')).getText();
+    }
 }
