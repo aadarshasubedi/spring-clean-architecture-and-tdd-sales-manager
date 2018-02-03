@@ -4,34 +4,32 @@ import {ClrWizard} from '@clr/angular';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-register-company',
-    templateUrl: './register-company.component.html',
-    styleUrls: ['./register-company.component.scss']
+  templateUrl: './register-company.component.html',
+  styleUrls: ['./register-company.component.scss']
 })
 export class RegisterCompanyComponent implements OnInit {
-    companyForm = new FormGroup({
-        name: new FormControl('', Validators.required),
-        address: new FormGroup({
-            postalCode: new FormControl('', Validators.required),
-            country: new FormControl('', Validators.required)
-        })
-    });
-    @ViewChild('registerCompanyWizard') wizard: ClrWizard;
+  companyForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    stateCode: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required)
+  });
+  @ViewChild('registerCompanyWizard') wizard: ClrWizard;
 
-    constructor(private router: Router) {
-    }
+  constructor(private router: Router) {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    registerCompany() {
-        console.log('Received register company action');
-        if (this.companyForm.valid) {
-            console.log('register company payload :', this.companyForm.value);
-        }
+  registerCompany() {
+    console.log('Received register company action');
+    if (this.companyForm.valid) {
+      console.log('register company payload :', this.companyForm.value);
     }
+  }
 
-    goBackToHome() {
-        this.router.navigate(['/home']);
-    }
+  goBackToHome() {
+    this.router.navigate(['/home']);
+  }
 }

@@ -6,6 +6,7 @@ import {ClarityModule} from '@clr/angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {By} from '@angular/platform-browser';
 
 describe('RegisterCompanyComponent', () => {
   let component: RegisterCompanyComponent;
@@ -32,8 +33,14 @@ describe('RegisterCompanyComponent', () => {
     fixture.detectChanges();
   });
 
-  it('shoud rendered register company form with needed fields', async(() => {
-
+  it('should rendered register company form with needed fields', async(() => {
+    const expectedRegisterFormFieldNames = [
+      'name', 'country', 'stateCode', 'address'
+    ];
+    expectedRegisterFormFieldNames.forEach(expectedField => {
+      const de = fixture.debugElement.query(By.css('form input[formcontrolname="' + expectedField + '"]'));
+      expect(de.attributes['id']).toBe(expectedField);
+    });
   }));
 
   it('should create', () => {
