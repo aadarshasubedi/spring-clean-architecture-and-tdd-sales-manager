@@ -38,9 +38,25 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: [
       //'PhantomJS'
-      'Electron',
-      //'ChromeHeadless'
+      //'Electron',
+      //'Chrome',
+      //'ChromeHeadless',
+      'ElectronDebugging',
+      //'PhantomJSDebugging'
     ],
+    customLaunchers: {
+      ElectronDebugging: {
+        base: 'Electron',
+        flags: [
+          '--show',
+          '--remote-debugging-port=9333'
+        ]
+      },
+      PhantomJSDebugging: {
+        base: 'PhantomJS',
+        debug: true
+      }
+    },
     singleRun: false
   });
 };
