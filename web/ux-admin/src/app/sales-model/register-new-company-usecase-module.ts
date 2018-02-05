@@ -1,24 +1,20 @@
-import {UseCase} from '../index';
+import {AsyncHttpCommand, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../api';
+import {Observable} from 'rxjs/Observable';
 
-export interface RegisterNewCompanyResponseRepresentation {
-  violations: any[];
-}
+export namespace RegisterNewCompanyUseCaseModule {
 
-
-export function FormControlDef(name: string, label: string) {
-  // do something
-  new RegisterNewCompanyUseCaseModule.RequestBuilder()
-    .name('name');
-}
-
-namespace RegisterNewCompanyUseCaseModule {
-
-  export class RegisterNewCompanyUseCase implements UseCase<UseCaseRequest, UseCaseResponse> {
+  export class AsyncHttpUseCase extends AsyncUseCase<UseCaseRequest, UseCaseResponse> {
     static API_PATH = '/companies/register';
 
-    execute(request: RegisterNewCompanyUseCaseModule.UseCaseRequest): RegisterNewCompanyUseCaseModule.UseCaseResponse {
-      return undefined;
+    execute(request: UseCaseRequest): Observable<UseCaseResponse> {
+      return new AsyncHttpCommand(new HttpContextBuilder()
+        .http(this.http)
+        .uri(AsyncHttpUseCase.API_PATH)
+        .method(HttpCommandMethod.POST)
+        .build())
+        .execute(request);
     }
+
   }
 
   export interface UseCaseRequest {
@@ -45,7 +41,7 @@ namespace RegisterNewCompanyUseCaseModule {
 
     name(name: string): RequestBuilder {
       this.buildingRequest.name = name;
-      return <RequestBuilder>this;
+      return this;
     }
 
     build(): UseCaseRequest {
