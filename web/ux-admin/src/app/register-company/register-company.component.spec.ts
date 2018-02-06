@@ -58,7 +58,8 @@ describe('RegisterCompanyComponent', () => {
     expect(useCase.execute).toHaveBeenCalledTimes(0);
   }));
 
-  it('should called ' + RegisterNewCompanyUseCaseModule.HttpUseCase.name + ' when click on finish button with valid form', async(() => {
+  it('should called ' + RegisterNewCompanyUseCaseModule.HttpUseCase.name
+    + ' when click on finish button with valid form', async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
     const payload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
       .name('GorkhasLab')
