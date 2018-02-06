@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RegisterCompanyComponent} from './register-company.component';
-import {APP_BASE_HREF} from '@angular/common';
 import {ClarityModule} from '@clr/angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -10,29 +9,22 @@ import {By} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {RegisterNewCompanyUseCaseModule} from '../sales-model';
+import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
+import {Router, Routes} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 
-describe('RegisterCompanyComponent', () => {
+describe('Register Company Unit Tests', () => {
   let component: RegisterCompanyComponent;
   let fixture: ComponentFixture<RegisterCompanyComponent>;
   let useCase: RegisterNewCompanyUseCaseModule.HttpUseCase;
+  let router: Router;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ClarityModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-        HttpClientTestingModule,
-        RouterTestingModule
-      ],
-      declarations: [RegisterCompanyComponent],
-      providers: [{provide: APP_BASE_HREF, useValue: '/'}, RegisterNewCompanyUseCaseModule.HttpUseCase]
-    })
-      .compileComponents().then(() => {
+    RegisterCompanyUnitTests.setup().then(() => {
       fixture = TestBed.createComponent(RegisterCompanyComponent);
       component = fixture.componentInstance;
       useCase = TestBed.get(RegisterNewCompanyUseCaseModule.HttpUseCase);
+      router = TestBed.get(Router);
     });
   }));
 
@@ -50,16 +42,14 @@ describe('RegisterCompanyComponent', () => {
     });
   }));
 
-  it('should not called ' + RegisterNewCompanyUseCaseModule.HttpUseCase.name
-    + ' when click on finish button with invalid form', async(() => {
+  it('should not called when click on finish button with invalid form', async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
     finishButton.nativeElement.click();
     spyOn(useCase, 'execute').and.returnValue(Observable.of({}));
     expect(useCase.execute).toHaveBeenCalledTimes(0);
   }));
 
-  it('should called ' + RegisterNewCompanyUseCaseModule.HttpUseCase.name
-    + ' when click on finish button with valid form', async(() => {
+  it(`when click on finish button with valid form then should navigated to "${ViewRoutes.DASHBOARD}"`, async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
     const payload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
       .name('GorkhasLab')
@@ -76,7 +66,7 @@ describe('RegisterCompanyComponent', () => {
     finishButton.nativeElement.click();
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(useCase.execute).toHaveBeenCalledWith(payload);
+      expect(router.url).toEqual(ViewRoutes.DASHBOARD);
     });
   }));
 
@@ -85,3 +75,44 @@ describe('RegisterCompanyComponent', () => {
   });
 
 });
+
+namespace RegisterCompanyUnitTests {
+
+  @Component({
+    template: `
+      <h1>Welcome to dashboard</h1>
+    `
+  })
+  export class DashboardComponent implements OnInit {
+
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
+  }
+
+  export const testRoutes: Routes = [
+    {
+      path: 'dashboard',
+      component: DashboardComponent
+    }
+  ];
+
+  export function setup() {
+    return TestBed.configureTestingModule({
+      imports: [
+        ClarityModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes(testRoutes)
+      ],
+      declarations: [RegisterCompanyComponent, DashboardComponent],
+      providers: [RegisterNewCompanyUseCaseModule.HttpUseCase, RegisterNewCompanyUseCaseModule.ViewPresenter]
+    })
+      .compileComponents();
+  }
+
+}

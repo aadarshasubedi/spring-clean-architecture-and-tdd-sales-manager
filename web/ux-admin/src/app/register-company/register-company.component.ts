@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterNewCompanyUseCaseModule} from '../sales-model';
+import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
 
 @Component({
   templateUrl: './register-company.component.html',
@@ -20,7 +20,8 @@ export class RegisterCompanyComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase) {
+              private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase,
+              private presenter: RegisterNewCompanyUseCaseModule.ViewPresenter) {
   }
 
   ngOnInit() {
@@ -30,11 +31,11 @@ export class RegisterCompanyComponent implements OnInit {
     console.log('Received register company action');
     if (this.companyForm.valid) {
       console.log('register company payload :', this.companyForm.value);
-      this.useCase.execute(this.companyForm.value);
+      this.presenter.present(this.useCase.execute(this.companyForm.value));
     }
   }
 
   goBackToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate([ViewRoutes.HOME]);
   }
 }

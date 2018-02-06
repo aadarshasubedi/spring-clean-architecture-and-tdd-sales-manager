@@ -1,7 +1,9 @@
-import {AsyncHttpCommand, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../api';
+import {AsyncHttpCommand, AsyncPresenter, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../api';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {ViewRoutes} from './routes';
 
 export namespace RegisterNewCompanyUseCaseModule {
 
@@ -21,7 +23,23 @@ export namespace RegisterNewCompanyUseCaseModule {
         .build())
         .execute(request);
     }
+  }
 
+  @Injectable()
+  export class ViewPresenter extends AsyncPresenter<UseCaseResponse> {
+
+    constructor(private router: Router) {
+      super();
+    }
+
+    present(response: Observable<UseCaseResponse>) {
+      response.subscribe(value => {
+        this.router.navigate([ViewRoutes.DASHBOARD])
+          .then(() => console.log('Successfully routed to dashboard.'));
+      }, (err: HttpErrorResponse) => {
+        throw Error(err.message);
+      });
+    }
   }
 
   interface RequestPayload {
@@ -35,8 +53,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     beginningOfYear: number;
   }
 
-  export interface UseCaseResponse {
-    violations: any[];
+  class UseCaseResponse {
   }
 
   export class PayloadBuilder {
