@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {HttpRegisterNewCompanyUseCase} from '../api/index';
+import {RegisterNewCompanyUseCaseModule} from '../sales-model';
 
 @Component({
   templateUrl: './register-company.component.html',
@@ -20,7 +20,7 @@ export class RegisterCompanyComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private useCase: HttpRegisterNewCompanyUseCase) {
+              private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase) {
   }
 
   ngOnInit() {

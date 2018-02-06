@@ -7,34 +7,30 @@ describe('Register New Company Use Case Unit Tests', () => {
 
   let http: HttpClient;
   let backend: HttpTestingController;
+  let useCase: RegisterNewCompanyUseCaseModule.HttpUseCase;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
         HttpClientTestingModule
-      ]
+      ],
+      providers: [RegisterNewCompanyUseCaseModule.HttpUseCase]
     })
       .compileComponents().then(() => {
       http = TestBed.get(HttpClient);
       backend = TestBed.get(HttpTestingController);
+      useCase = TestBed.get(RegisterNewCompanyUseCaseModule.HttpUseCase);
     });
   }));
 
-  it('should return http ok from backend when given request has no violations', async(() => {
-    const request = new RegisterNewCompanyUseCaseModule.RequestBuilder()
+  it('should invoke async http request on uri [' + RegisterNewCompanyUseCaseModule.HttpUseCase.API_PATH + ']', async(() => {
+    const request = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
       .name('Bhuwan P. Upadhyay')
       .build();
-    const response = 'response';
-    console.log(response);
-    new RegisterNewCompanyUseCaseModule
-      .AsyncHttpUseCase(http)
-      .execute(request).subscribe(value => {
-        console.log(value);
-      expect(value).toBe(response);
-    });
+    useCase.execute(request).subscribe();
     backend.expectOne({
-      url: RegisterNewCompanyUseCaseModule.AsyncHttpUseCase.API_PATH, method: 'POST', body: request, observe: response
+      url: RegisterNewCompanyUseCaseModule.HttpUseCase.API_PATH, method: 'POST'
     });
   }));
 });
