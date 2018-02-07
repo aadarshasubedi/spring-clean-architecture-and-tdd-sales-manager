@@ -57,7 +57,6 @@ describe('RegisterCompanyComponent Unit Tests', () => {
     spyOn(useCase, 'execute').and.returnValue(Observable.of({}));
     component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
     fixture.detectChanges();
-
     finishButton.nativeElement.click();
     fixture.whenStable().then(() => {
       expect(router.url).toEqual(ViewRoutes.DASHBOARD);
@@ -73,9 +72,7 @@ describe('RegisterCompanyComponent Unit Tests', () => {
 
     finishButton.nativeElement.click();
     fixture.whenStable().then(() => {
-      const alert = fixture.debugElement.query(By.css('cloud-sales-http-response-error'));
       expect(component.errorFlag).toEqual(true);
-      expect(alert).toBeTruthy();
     });
   }));
 
