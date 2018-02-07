@@ -5,19 +5,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
 import {AppComponent} from './app.component';
 import {ROUTING} from './app.routing';
-import {HomeComponent} from './home/home.component';
-import {AboutComponent} from './about/about.component';
-import {RegisterCompanyComponent} from './register-company/register-company.component';
 import {HttpClientModule} from '@angular/common/http';
-import {RegisterNewCompanyUseCaseModule} from './sales-model';
 import {CoreModule} from './core/core.module';
+import {PublicModule} from './public/public.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AboutComponent,
-    HomeComponent,
-    RegisterCompanyComponent
+    AppComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -26,9 +20,9 @@ import {CoreModule} from './core/core.module';
     CoreModule,
     HttpClientModule,
     ClarityModule,
+    PublicModule,
     ROUTING
   ],
-  providers: [...RegisterNewCompanyUseCaseModule.providers()],
   bootstrap: [AppComponent]
 })
 export class AppModule {

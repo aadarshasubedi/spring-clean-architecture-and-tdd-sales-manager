@@ -1,0 +1,103 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "s",
+      "address": "s",
+      "contactPerson": "s",
+      "country": "s",
+      "stateCode": "s",
+      "telephone": "s",
+      "email": "s",
+      "beginningOfYear": 2016
+    },
+    {
+      "name": "sdadd",
+      "address": "sdfsdf",
+      "country": "sdfs",
+      "stateCode": "sfdsf",
+      "telephone": "sdfs",
+      "contactPerson": "sdfs",
+      "beginningOfYear": "234234",
+      "email": "sdfsdf",
+      "id": 2
+    },
+    {
+      "name": "asda",
+      "address": "sdfsf",
+      "country": "sdsad",
+      "stateCode": "sdfsf",
+      "telephone": "sdfs",
+      "contactPerson": "sdfasd",
+      "beginningOfYear": "22323",
+      "email": "sdfsf",
+      "id": 3
+    },
+    {
+      "name": "sdfs",
+      "address": "sd",
+      "country": "dsfs",
+      "stateCode": "sdfs",
+      "telephone": "sdfs",
+      "contactPerson": "sdf",
+      "beginningOfYear": "1231",
+      "email": "sdfs",
+      "id": 4
+    },
+    {
+      "name": "sdfs",
+      "address": "sdfsd",
+      "country": "sdf",
+      "stateCode": "dfd",
+      "telephone": "sdfs",
+      "contactPerson": "dsf",
+      "beginningOfYear": "121",
+      "email": "asda",
+      "id": 5
+    },
+    {
+      "name": "asd",
+      "address": "dfs",
+      "country": "sdfs",
+      "stateCode": "sdfs",
+      "telephone": "sdfs",
+      "contactPerson": "sdsf",
+      "beginningOfYear": "1231",
+      "email": "sdfsf",
+      "id": 6
+    },
+    {
+      "name": "asdad",
+      "address": "dsfs",
+      "country": "sdfsf",
+      "stateCode": "dsfsfsf",
+      "telephone": "sdfs",
+      "contactPerson": "sdad",
+      "beginningOfYear": "234",
+      "email": "sdfsf",
+      "id": 7
+    },
+    {
+      "name": "asd",
+      "address": "sdf",
+      "country": "sdf",
+      "stateCode": "sdf",
+      "telephone": "sdf",
+      "contactPerson": "sdf",
+      "beginningOfYear": "435",
+      "email": "sdfs",
+      "id": 8
+    },
+    {
+      "name": "sada",
+      "address": "sdfs",
+      "country": "sdfsf",
+      "stateCode": "sdfsf",
+      "telephone": "sdf",
+      "contactPerson": "sdfas",
+      "beginningOfYear": "23423",
+      "email": "sdfs",
+      "id": 9
+    }
+  ]
+}

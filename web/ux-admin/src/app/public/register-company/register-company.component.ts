@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
+import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../../domain/sales/index';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ClrWizard} from '@clr/angular';
 
 @Component({
   templateUrl: './register-company.component.html',

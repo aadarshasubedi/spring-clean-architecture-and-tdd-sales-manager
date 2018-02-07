@@ -1,0 +1,40 @@
+<clr-main-container>
+  <clr-alert [clrAlertType]="'alert-danger'" [clrAlertAppLevel]="true">
+    <clr-alert-item>
+        <span class="alert-text">
+            This is an app level alert.
+        </span>
+      <div class="alert-actions">
+        <button class="btn alert-action">Fix</button>
+      </div>
+    </clr-alert-item>
+  </clr-alert>
+  <clr-header>
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="clr-icon clr-clarity-logo"></span>
+        <span class="title">Sales Manager</span>
+      </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active">
+        <span class="nav-text">Home</span>
+      </a>
+      <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active">
+        <span class="nav-text">About</span>
+      </a>
+    </div>
+    <div class="header-actions">
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area">
+      <section class="home-hero">
+        <h1>Cloud Based Sales Manager</h1>
+        <p class="head">This is a cloud based sales management application. To start sale your products in the market
+          register your company.</p>
+        <a routerLink="/register-your-company" class="btn btn-outline">Register Your Company</a>
+      </section>
+    </div>
+  </div>
+</clr-main-container>

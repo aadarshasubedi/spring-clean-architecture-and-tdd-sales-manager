@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 
 import {Router, Routes} from '@angular/router';
-import {DashboardComponent} from '../pages/dashboard/dashboard.component';
+import {DashboardComponent} from '../../admin/pages/dashboard/dashboard.component';
 
 describe('Register New Company Use Case Unit Tests', () => {
 

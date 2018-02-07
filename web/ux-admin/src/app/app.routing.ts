@@ -1,16 +1,19 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AboutComponent} from './about/about.component';
-import {HomeComponent} from './home/home.component';
-import {RegisterCompanyComponent} from "./register-company/register-company.component";
+import {AboutComponent} from './public/about/about.component';
+import {HomeComponent} from './public/home/home.component';
+import {RegisterCompanyComponent} from './public/register-company/register-company.component';
+import {LoginComponent} from './public/login/login.component';
 
 
 export const ROUTES: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'register-your-company', component: RegisterCompanyComponent}
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'register-your-company', component: RegisterCompanyComponent},
+  {path: 'dashboard', loadChildren: './admin/pages/pages.module#PagesModule'}
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);

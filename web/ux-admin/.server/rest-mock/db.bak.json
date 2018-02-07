@@ -1,0 +1,15 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "s",
+      "address": "s",
+      "contactPerson": "s",
+      "country": "s",
+      "stateCode": "s",
+      "telephone": "s",
+      "email": "s",
+      "beginningOfYear": 2016
+    }
+  ]
+}

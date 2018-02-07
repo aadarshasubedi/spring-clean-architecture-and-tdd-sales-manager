@@ -1,16 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MainLayoutComponent } from './main-layout.component';
+import {MainLayoutComponent} from './main-layout.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
   let fixture: ComponentFixture<MainLayoutComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MainLayoutComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(
+      {
+        imports: [RouterTestingModule],
+        declarations: [MainLayoutComponent]
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

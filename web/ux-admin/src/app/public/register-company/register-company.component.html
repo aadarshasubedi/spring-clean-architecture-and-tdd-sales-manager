@@ -9,6 +9,7 @@
 
   <clr-wizard-page
     [clrWizardPageNextDisabled]="!companyForm.valid"
+    clrWizardPagePreventDefault="true"
     (clrWizardPageOnCommit)="registerCompany()">
     <ng-template clrPageTitle>Company Detail</ng-template>
     <div class="spinner" *ngIf="loadingFlag">
