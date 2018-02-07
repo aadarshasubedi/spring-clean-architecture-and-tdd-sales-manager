@@ -20,8 +20,7 @@ export class RegisterCompanyComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase,
-              private presenter: RegisterNewCompanyUseCaseModule.ViewPresenter) {
+              private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase) {
   }
 
   ngOnInit() {
@@ -31,7 +30,13 @@ export class RegisterCompanyComponent implements OnInit {
     console.log('Received register company action');
     if (this.companyForm.valid) {
       console.log('register company payload :', this.companyForm.value);
-      this.presenter.present(this.useCase.execute(this.companyForm.value));
+      this.useCase.execute(this.companyForm.value)
+        .subscribe(
+          value => this.router.navigate([ViewRoutes.DASHBOARD])
+            .then(() => console.log('Successfully routed to dashboard.')),
+          err => {
+            console.log('Error', err);
+          });
     }
   }
 

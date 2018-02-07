@@ -38,17 +38,13 @@ export class HttpContextBuilder implements HasClient, HasUri, HasMethod, CanBuil
     return this;
   }
 
-  protected build(): HttpContext {
+  build(): HttpContext {
     return new HttpContext(this._http, this._uri, this._method);
   }
 
 }
 
 export class HttpContext {
-  private _http: HttpClient;
-  private _uri: string;
-  private _method: HttpCommandMethod;
-
   constructor(http: HttpClient,
               uri: string,
               method: HttpCommandMethod) {
@@ -57,42 +53,41 @@ export class HttpContext {
     this._method = method;
   }
 
+  private _http: HttpClient;
+
   get http(): HttpClient {
     return this._http;
   }
 
-  get method(): HttpCommandMethod {
-    return this._method;
-  }
+  private _uri: string;
 
   get uri(): string {
     return this._uri;
+  }
+
+  private _method: HttpCommandMethod;
+
+  get method(): HttpCommandMethod {
+    return this._method;
   }
 }
 
 export enum HttpCommandMethod {GET, POST}
 
 abstract class HttpCommand<I, O> {
-  private context: HttpContext;
-
-
-  constructor(context: HttpContext) {
-    this.context = context;
-  }
-
   abstract execute(commandPayload: I): O;
 }
 
 export class AsyncHttpCommand<I, O> extends HttpCommand<I, Observable<O>> {
   constructor(private context: HttpContext) {
-    super(context);
+    super();
   }
 
   execute(commandPayload: I): Observable<O> {
     if (this.context.method === HttpCommandMethod.GET) {
-      return this.context.http.get(this.context.uri);
+      return this.context.http.get<O>(this.context.uri);
     } else if (this.context.method === HttpCommandMethod.POST) {
-      return this.context.http.post(this.context.uri, commandPayload);
+      return this.context.http.post<O>(this.context.uri, commandPayload);
     } else {
       throw new Error('Unsupported http method type' + this.context.method);
     }

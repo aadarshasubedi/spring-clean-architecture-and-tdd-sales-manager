@@ -1,11 +1,13 @@
-import {AsyncHttpCommand, AsyncPresenter, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../api';
+import {AsyncHttpCommand, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../api';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {ViewRoutes} from './routes';
+import {HttpClient} from '@angular/common/http';
+import {Injectable, Provider} from '@angular/core';
 
 export namespace RegisterNewCompanyUseCaseModule {
+
+  export function providers(): Provider[] {
+    return [HttpUseCase];
+  }
 
   @Injectable()
   export class HttpUseCase extends AsyncUseCase<RequestPayload, UseCaseResponse> {
@@ -25,22 +27,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
   }
 
-  @Injectable()
-  export class ViewPresenter extends AsyncPresenter<UseCaseResponse> {
-
-    constructor(private router: Router) {
-      super();
-    }
-
-    present(response: Observable<UseCaseResponse>) {
-      response.subscribe(value => {
-        this.router.navigate([ViewRoutes.DASHBOARD])
-          .then(() => console.log('Successfully routed to dashboard.'));
-      }, (err: HttpErrorResponse) => {
-        throw Error(err.message);
-      });
-    }
-  }
+  const moduleName = '[Register New Company UseCase]';
 
   interface RequestPayload {
     name: string;

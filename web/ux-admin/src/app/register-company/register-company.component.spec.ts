@@ -9,9 +9,11 @@ import {By} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
 import {Router, Routes} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
+import {Violation} from '../api';
 
 describe('Register Company Unit Tests', () => {
   let component: RegisterCompanyComponent;
@@ -51,22 +53,26 @@ describe('Register Company Unit Tests', () => {
 
   it(`when click on finish button with valid form then should navigated to "${ViewRoutes.DASHBOARD}"`, async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
-    const payload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
-      .name('GorkhasLab')
-      .address('KTM')
-      .beginningOfYear(2016)
-      .contactPerson('Bhuwan P. Upadhyay')
-      .email('bhuwan.upadhyay49@gmail.com')
-      .country('Nepal')
-      .stateCode('01')
-      .telephone('9848490976')
-      .build();
     spyOn(useCase, 'execute').and.returnValue(Observable.of({}));
-    component.companyForm.setValue(payload);
+    component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
     finishButton.nativeElement.click();
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(router.url).toEqual(ViewRoutes.DASHBOARD);
+    });
+  }));
+
+  it(`when click on finish button with valid form but server found violation then should render error message`, async(() => {
+    const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
+    const payload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
+      .build();
+    spyOn(useCase, 'execute').and.returnValue(Observable.throw(RegisterCompanyUnitTests.violations));
+    component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
+    finishButton.nativeElement.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const alert = fixture.debugElement.query(By.css('clr-alert[ng-reflect-alert-type="alert-danger"]'));
+      expect(alert).toBeTruthy();
     });
   }));
 
@@ -110,9 +116,24 @@ namespace RegisterCompanyUnitTests {
         RouterTestingModule.withRoutes(testRoutes)
       ],
       declarations: [RegisterCompanyComponent, DashboardComponent],
-      providers: [RegisterNewCompanyUseCaseModule.HttpUseCase, RegisterNewCompanyUseCaseModule.ViewPresenter]
+      providers: [RegisterNewCompanyUseCaseModule.providers()]
     })
       .compileComponents();
   }
 
+  export const validPayload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
+    .name('GorkhasLab')
+    .address('KTM')
+    .beginningOfYear(2016)
+    .contactPerson('Bhuwan P. Upadhyay')
+    .email('bhuwan.upadhyay49@gmail.com')
+    .country('Nepal')
+    .stateCode('01')
+    .telephone('9848490976')
+    .build();
+
+  export const violations: Violation[] = [{
+    propertyPath: '',
+    message: ''
+  }];
 }
