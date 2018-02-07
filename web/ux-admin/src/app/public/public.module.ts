@@ -9,6 +9,8 @@ import {RegisterNewCompanyUseCaseModule} from '../domain/sales';
 import {RouterModule} from '@angular/router';
 import {CoreModule} from '../core/core.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {LoginUseCaseModule} from '../domain/securities';
+import {SessionHandleUseCaseModule} from '../domain/securities/session-handle-usecase-module';
 
 @NgModule({
   imports: [
@@ -30,7 +32,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     RegisterCompanyComponent,
     LoginComponent
   ],
-  providers: [...RegisterNewCompanyUseCaseModule.providers()],
+  providers: [
+    ...RegisterNewCompanyUseCaseModule.providers(),
+    ...LoginUseCaseModule.providers(),
+    ...SessionHandleUseCaseModule.providers()
+  ],
 })
 export class PublicModule {
 }

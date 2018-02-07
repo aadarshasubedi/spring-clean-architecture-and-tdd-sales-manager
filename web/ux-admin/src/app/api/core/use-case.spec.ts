@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-describe('UseCase Unit Tests', () => {
+describe('DestroyLocalSessionUseCase Unit Tests', () => {
 
 
   beforeEach(() => {

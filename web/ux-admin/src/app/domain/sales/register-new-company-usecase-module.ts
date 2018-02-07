@@ -18,7 +18,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
 
     execute(request: RequestPayload): Observable<UseCaseResponse> {
-      return new AsyncHttpCommand(new HttpContextBuilder()
+      return new AsyncHttpCommand<RequestPayload, UseCaseResponse>(new HttpContextBuilder()
         .http(this.http)
         .uri(HttpUseCase.API_PATH)
         .method(HttpCommandMethod.POST)
@@ -27,7 +27,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
   }
 
-  const moduleName = '[Register New Company UseCase]';
+  const moduleName = '[Register New Company DestroyLocalSessionUseCase]';
 
   interface RequestPayload {
     name: string;

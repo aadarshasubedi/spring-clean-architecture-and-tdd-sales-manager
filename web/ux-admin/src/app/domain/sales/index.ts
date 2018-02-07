@@ -1,2 +1,2 @@
 export {RegisterNewCompanyUseCaseModule} from './register-new-company-usecase-module';
-export {ViewRoutes} from './routes';
+export {ViewRoutes} from '../routes/routes';

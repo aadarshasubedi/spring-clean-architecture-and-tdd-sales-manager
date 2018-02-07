@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../../domain/sales/index';
-import {HttpErrorResponse} from '@angular/common/http';
-import {ClrWizard} from '@clr/angular';
+import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../../domain/sales';
+import {AbstractHttpUseCaseFormComponent} from '../../api';
 
 @Component({
   templateUrl: './register-company.component.html',
   styleUrls: ['./register-company.component.scss']
 })
-export class RegisterCompanyComponent implements OnInit {
+export class RegisterCompanyComponent extends AbstractHttpUseCaseFormComponent implements OnInit {
+
   companyForm = new FormGroup({
     name: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
@@ -20,12 +20,10 @@ export class RegisterCompanyComponent implements OnInit {
     beginningOfYear: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required)
   });
-  httpResponseError: HttpErrorResponse;
-  loadingFlag = false;
-  errorFlag = false;
 
   constructor(private router: Router,
               private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase) {
+    super();
   }
 
   ngOnInit() {
@@ -49,16 +47,6 @@ export class RegisterCompanyComponent implements OnInit {
 
   goBackToHome() {
     this.router.navigate([ViewRoutes.HOME]);
-  }
-
-  private turnOnLoading() {
-    this.loadingFlag = true;
-    this.errorFlag = false;
-  }
-
-  private turnOnError() {
-    this.loadingFlag = false;
-    this.errorFlag = true;
   }
 
 }
