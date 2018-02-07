@@ -52,7 +52,7 @@ describe('RegisterCompanyComponent Unit Tests', () => {
     expect(useCase.execute).toHaveBeenCalledTimes(0);
   }));
 
-  it(`when click on finish button with valid form then should navigated to /dashboard`, async(() => {
+  it(`when click on finish button with valid form then should navigated to ${ViewRoutes.DASHBOARD}`, async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
     spyOn(useCase, 'execute').and.returnValue(Observable.of({}));
     component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
@@ -101,7 +101,7 @@ namespace RegisterCompanyUnitTests {
 
   export const testRoutes: Routes = [
     {
-      path: 'dashboard',
+      path: ViewRoutes.ADMIN_BASE + '/dashboard',
       component: DashboardComponent
     }
   ];

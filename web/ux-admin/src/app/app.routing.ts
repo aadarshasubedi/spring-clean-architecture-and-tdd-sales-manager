@@ -5,6 +5,7 @@ import {AboutComponent} from './public/about/about.component';
 import {HomeComponent} from './public/home/home.component';
 import {RegisterCompanyComponent} from './public/register-company/register-company.component';
 import {LoginComponent} from './public/login/login.component';
+import {ViewRoutes} from './domain/routes';
 
 
 export const ROUTES: Routes = [
@@ -13,7 +14,7 @@ export const ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'about', component: AboutComponent},
   {path: 'register-your-company', component: RegisterCompanyComponent},
-  {path: 'dashboard', loadChildren: './admin/pages/pages.module#PagesModule'}
+  {path: ViewRoutes.ADMIN_BASE, loadChildren: './admin/pages/pages.module#PagesModule'}
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);

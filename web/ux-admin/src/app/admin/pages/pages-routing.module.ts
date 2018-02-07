@@ -8,10 +8,9 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      {
-        path: '',
-        component: DashboardComponent
-      }
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'items', loadChildren: './items/items.module#ItemsModule'}
     ]
   }
 ];
