@@ -2,6 +2,7 @@ import {AsyncHttpCommand, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} f
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Provider} from '@angular/core';
+import {BASE_URI} from '../../api';
 
 export namespace RegisterNewCompanyUseCaseModule {
 
@@ -11,7 +12,7 @@ export namespace RegisterNewCompanyUseCaseModule {
 
   @Injectable()
   export class HttpUseCase extends AsyncUseCase<RequestPayload, UseCaseResponse> {
-    static API_PATH = '/companies/register';
+    static API_PATH = BASE_URI + '/companies/register';
 
     constructor(private http: HttpClient) {
       super();
@@ -27,7 +28,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
   }
 
-  const moduleName = '[Register New Company DestroyLocalSessionUseCase]';
+  const moduleName = '[RegisterNewCompanyUseCaseModule]';
 
   interface RequestPayload {
     name: string;

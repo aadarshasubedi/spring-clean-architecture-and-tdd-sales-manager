@@ -1,4 +1,4 @@
-import {AsyncHttpCommand, AsyncUseCase, HttpCommandMethod, HttpContextBuilder} from '../../api';
+import {AsyncHttpCommand, AsyncUseCase, BASE_URI, HttpCommandMethod, HttpContextBuilder} from '../../api';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Provider} from '@angular/core';
@@ -11,7 +11,7 @@ export namespace LoginUseCaseModule {
 
   @Injectable()
   export class HttpUseCase extends AsyncUseCase<RequestPayload, UseCaseResponse> {
-    static API_PATH = '/login';
+    static API_PATH = BASE_URI + '/login';
 
     constructor(private http: HttpClient) {
       super();
@@ -21,7 +21,7 @@ export namespace LoginUseCaseModule {
       return new AsyncHttpCommand<RequestPayload, UseCaseResponse>(new HttpContextBuilder()
         .http(this.http)
         .uri(HttpUseCase.API_PATH)
-        .method(HttpCommandMethod.POST)
+        .method(HttpCommandMethod.GET)
         .build())
         .execute(request);
     }

@@ -32,7 +32,7 @@ describe('LoginUseCase Unit Tests', () => {
       .build();
     useCase.execute(request).subscribe();
     backend.expectOne({
-      url: LoginUseCaseModule.HttpUseCase.API_PATH, method: 'POST'
+      url: LoginUseCaseModule.HttpUseCase.API_PATH, method: 'GET'
     });
   }));
 

@@ -1,6 +1,8 @@
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 
+export const BASE_URI = '/api/v1';
+
 interface HasClient {
   http(http: HttpClient): HasUri;
 }
