@@ -1,13 +1,9 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AsyncHttpCommand, HttpCommandMethod, HttpContextBuilder} from './http-core';
 
-describe('Http Core Design', () => {
-
-  let http: HttpClient;
-  let backend: HttpTestingController;
-
+describe('HttpCore Unit Tests', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -15,20 +11,18 @@ describe('Http Core Design', () => {
         HttpClientTestingModule
       ]
     })
-      .compileComponents().then(() => {
-      http = TestBed.get(HttpClient);
-      backend = TestBed.get(HttpTestingController);
-    });
+      .compileComponents();
   });
 
-  it('should invoke backend when given uri and httpClient with payload', () => {
+  it('should invoke backend when given uri and httpClient with payload', async(() => {
     new AsyncHttpCommand(new HttpContextBuilder()
-      .http(http)
+      .http(TestBed.get(HttpClient))
       .uri('/api/foo')
       .method(HttpCommandMethod.GET).build())
       .execute({}).subscribe();
+    const backend = TestBed.get(HttpTestingController);
     backend.expectOne({
       url: '/api/foo', method: 'GET'
     });
-  });
+  }));
 });

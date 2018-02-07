@@ -10,6 +10,7 @@ import {AboutComponent} from './about/about.component';
 import {RegisterCompanyComponent} from './register-company/register-company.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RegisterNewCompanyUseCaseModule} from './sales-model';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {RegisterNewCompanyUseCaseModule} from './sales-model';
     BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
+    CoreModule,
     HttpClientModule,
     ClarityModule,
     ROUTING

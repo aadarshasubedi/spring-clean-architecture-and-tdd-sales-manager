@@ -14,8 +14,9 @@ import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
 import {Router, Routes} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {Violation} from '../api';
+import {CoreModule} from '../core/core.module';
 
-describe('Register Company Unit Tests', () => {
+describe('RegisterCompanyComponent Unit Tests', () => {
   let component: RegisterCompanyComponent;
   let fixture: ComponentFixture<RegisterCompanyComponent>;
   let useCase: RegisterNewCompanyUseCaseModule.HttpUseCase;
@@ -51,12 +52,13 @@ describe('Register Company Unit Tests', () => {
     expect(useCase.execute).toHaveBeenCalledTimes(0);
   }));
 
-  it(`when click on finish button with valid form then should navigated to "${ViewRoutes.DASHBOARD}"`, async(() => {
+  it(`when click on finish button with valid form then should navigated to /dashboard`, async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
     spyOn(useCase, 'execute').and.returnValue(Observable.of({}));
     component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
-    finishButton.nativeElement.click();
     fixture.detectChanges();
+
+    finishButton.nativeElement.click();
     fixture.whenStable().then(() => {
       expect(router.url).toEqual(ViewRoutes.DASHBOARD);
     });
@@ -64,14 +66,15 @@ describe('Register Company Unit Tests', () => {
 
   it(`when click on finish button with valid form but server found violation then should render error message`, async(() => {
     const finishButton = fixture.debugElement.query(By.css('clr-wizard-button[ng-reflect-type="finish"] button'));
-    const payload = new RegisterNewCompanyUseCaseModule.PayloadBuilder()
-      .build();
+
     spyOn(useCase, 'execute').and.returnValue(Observable.throw(RegisterCompanyUnitTests.violations));
     component.companyForm.setValue(RegisterCompanyUnitTests.validPayload);
-    finishButton.nativeElement.click();
     fixture.detectChanges();
+
+    finishButton.nativeElement.click();
     fixture.whenStable().then(() => {
-      const alert = fixture.debugElement.query(By.css('clr-alert[ng-reflect-alert-type="alert-danger"]'));
+      const alert = fixture.debugElement.query(By.css('cloud-sales-http-response-error'));
+      expect(component.errorFlag).toEqual(true);
       expect(alert).toBeTruthy();
     });
   }));
@@ -111,6 +114,7 @@ namespace RegisterCompanyUnitTests {
       imports: [
         ClarityModule,
         NoopAnimationsModule,
+        CoreModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(testRoutes)
@@ -133,7 +137,7 @@ namespace RegisterCompanyUnitTests {
     .build();
 
   export const violations: Violation[] = [{
-    propertyPath: '',
-    message: ''
+    path: 'name',
+    message: 'name.already.exist'
   }];
 }

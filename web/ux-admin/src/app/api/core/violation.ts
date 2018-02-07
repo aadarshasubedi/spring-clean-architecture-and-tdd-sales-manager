@@ -1,4 +1,4 @@
 export interface Violation {
-  propertyPath: string;
+  path: string;
   message: string;
 }

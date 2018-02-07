@@ -1,23 +1,27 @@
 <clr-wizard
   [clrWizardOpen]="true"
-  (clrWizardOnCancel)="goBackToHome()"
-  (clrWizardOnFinish)="registerCompany()">
+  (clrWizardOnCancel)="goBackToHome()">
   <clr-wizard-title>Register Your Company</clr-wizard-title>
   <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
   <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
 
-  <clr-wizard-page [clrWizardPageNextDisabled]="!companyForm.valid">
+  <clr-wizard-page
+    [clrWizardPageNextDisabled]="!companyForm.valid"
+    (clrWizardPageOnCommit)="registerCompany()"
+    clrWizardPagePreventDefault="true">
     <ng-template clrPageTitle>Company Detail</ng-template>
-    <clr-alert [clrAlertType]="'alert-danger'">
+    <div class="spinner" *ngIf="loadingFlag">
+      Loading...
+    </div>
+    <clr-alert [clrAlertType]="'alert-info'" [clrAlertClosable]="false">
       <div class="alert-item">
-        <span class="alert-text">
-            This alert indicates a success!
-        </span>
+        Fill your company detail.
       </div>
     </clr-alert>
-
+    <cloud-sales-http-response-error [responseError]="httpResponseError"
+                                     *ngIf="errorFlag"></cloud-sales-http-response-error>
     <form [formGroup]="companyForm">
       <section class="form-block">
         <div class="form-group">

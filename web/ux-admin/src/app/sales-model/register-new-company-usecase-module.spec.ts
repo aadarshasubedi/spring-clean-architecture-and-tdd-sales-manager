@@ -1,11 +1,8 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {async, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RegisterNewCompanyUseCaseModule} from './register-new-company-usecase-module';
-import {ViewRoutes} from './routes';
 import {RouterTestingModule} from '@angular/router/testing';
-
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 
@@ -17,7 +14,6 @@ describe('Register New Company Use Case Unit Tests', () => {
   let http: HttpClient;
   let backend: HttpTestingController;
   let useCase: RegisterNewCompanyUseCaseModule.HttpUseCase;
-  let viewPresenter: RegisterNewCompanyUseCaseModule.ViewPresenter;
   let router: Router;
 
   const testRoutes: Routes = [
@@ -34,14 +30,13 @@ describe('Register New Company Use Case Unit Tests', () => {
         RouterTestingModule.withRoutes(testRoutes),
         HttpClientTestingModule
       ],
-      providers: [RegisterNewCompanyUseCaseModule.HttpUseCase, RegisterNewCompanyUseCaseModule.ViewPresenter]
+      providers: [RegisterNewCompanyUseCaseModule.providers()]
     })
       .compileComponents().then(() => {
       http = TestBed.get(HttpClient);
       router = TestBed.get(Router);
       backend = TestBed.get(HttpTestingController);
       useCase = TestBed.get(RegisterNewCompanyUseCaseModule.HttpUseCase);
-      viewPresenter = TestBed.get(RegisterNewCompanyUseCaseModule.ViewPresenter);
     });
   }));
 
@@ -54,10 +49,5 @@ describe('Register New Company Use Case Unit Tests', () => {
       url: RegisterNewCompanyUseCaseModule.HttpUseCase.API_PATH, method: 'POST'
     });
   }));
-
-  it(`should navigated to "${ViewRoutes.DASHBOARD}" when http response has ok status`, fakeAsync(() => {
-    viewPresenter.present(Observable.of());
-  }));
-
 
 });

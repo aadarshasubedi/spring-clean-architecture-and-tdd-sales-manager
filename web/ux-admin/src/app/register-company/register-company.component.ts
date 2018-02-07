@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../sales-model';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   templateUrl: './register-company.component.html',
@@ -18,6 +19,9 @@ export class RegisterCompanyComponent implements OnInit {
     beginningOfYear: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required)
   });
+  httpResponseError: HttpErrorResponse;
+  loadingFlag = false;
+  errorFlag = false;
 
   constructor(private router: Router,
               private useCase: RegisterNewCompanyUseCaseModule.HttpUseCase) {
@@ -27,6 +31,7 @@ export class RegisterCompanyComponent implements OnInit {
   }
 
   registerCompany() {
+    this.turnOnLoading();
     console.log('Received register company action');
     if (this.companyForm.valid) {
       console.log('register company payload :', this.companyForm.value);
@@ -35,7 +40,8 @@ export class RegisterCompanyComponent implements OnInit {
           value => this.router.navigate([ViewRoutes.DASHBOARD])
             .then(() => console.log('Successfully routed to dashboard.')),
           err => {
-            console.log('Error', err);
+            this.turnOnError();
+            this.httpResponseError = err;
           });
     }
   }
@@ -43,4 +49,15 @@ export class RegisterCompanyComponent implements OnInit {
   goBackToHome() {
     this.router.navigate([ViewRoutes.HOME]);
   }
+
+  private turnOnLoading() {
+    this.loadingFlag = true;
+    this.errorFlag = false;
+  }
+
+  private turnOnError() {
+    this.loadingFlag = false;
+    this.errorFlag = true;
+  }
+
 }
