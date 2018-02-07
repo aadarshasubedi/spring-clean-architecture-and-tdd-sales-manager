@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'cloud-sales-add-new-item',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewItemComponent implements OnInit {
 
-  constructor() { }
+  itemForm: FormGroup = new FormGroup({
+    'code': new FormControl(),
+    'name': new FormControl(),
+    'description': new FormControl()
+  });
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
