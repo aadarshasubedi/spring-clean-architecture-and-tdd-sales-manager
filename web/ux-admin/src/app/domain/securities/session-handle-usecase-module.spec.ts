@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import {SessionHandleUseCaseModule} from './session-handle-usecase-module';
 
-describe('SessionHandleUseCaseModule Unit Tests', () => {
+describe('[SessionHandleUseCaseModule] Unit Tests', () => {
 
   let http: HttpClient;
   let backend: HttpTestingController;

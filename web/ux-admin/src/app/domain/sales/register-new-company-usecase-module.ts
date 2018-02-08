@@ -27,8 +27,6 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
   }
 
-  const moduleName = '[AddNewItemUseCaseModule]';
-
   interface RequestPayload {
     name: string;
     address: string;

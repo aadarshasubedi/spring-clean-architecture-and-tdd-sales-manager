@@ -23,7 +23,6 @@ export namespace SessionHandleUseCaseModule {
     }
   }
 
-  const moduleName = '[SessionHandleUseCaseModule]';
 
   interface LoggedUser {
     username: string;

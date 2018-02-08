@@ -27,7 +27,6 @@ export namespace LoginUseCaseModule {
     }
   }
 
-  const moduleName = '[LoginUseCaseModule]';
 
   interface RequestPayload {
     username: string;

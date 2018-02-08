@@ -13,8 +13,9 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {AdminViewRoutes} from '../../../../domain/routes/routes';
 import {By} from '@angular/platform-browser';
 import {AddNewItemUseCaseModule} from '../../../../domain/items';
+import {NgxErrorsModule} from '@ultimate/ngxerrors';
 
-describe('AddNewItemComponent', () => {
+describe('[AddNewItemComponent] Unit Tests', () => {
   let component: AddNewItemComponent;
   let fixture: ComponentFixture<AddNewItemComponent>;
 
@@ -48,12 +49,23 @@ describe('AddNewItemComponent', () => {
       expect(matchAny).toEqual(true);
     });
   }));
-
-  it(`should code contains prefix "${AddNewItemUseCaseModule.UseCaseFormValidators.CODE_PREFIX}"`, async(() => {
-    component.itemForm.setValue(AddNewItemComponentUnitTests.payloadWithCodeDoesNotContainsPrefix);
-    fixture.detectChanges();
-    fixture.whenStable().then(value => {
-      expect(component.itemForm.controls['code'].valid).toEqual(false);
+  it('should rendered add new item form with needed fields', async(() => {
+    const expectedRegisterFormFieldNames = [
+      'code', 'name', 'description'
+    ];
+    expectedRegisterFormFieldNames.forEach(expectedField => {
+      const de = fixture.debugElement.query(By.css('form input[formcontrolname="' + expectedField + '"]'));
+      const textAreaDe = fixture.debugElement.query(By.css('form textarea[formcontrolname="' + expectedField + '"]'));
+      let matchAny = false;
+      if (de) {
+        expect(de.attributes['id']).toBe(expectedField);
+        matchAny = true;
+      }
+      if (textAreaDe) {
+        expect(textAreaDe.attributes['id']).toBe(expectedField);
+        matchAny = true;
+      }
+      expect(matchAny).toEqual(true);
     });
   }));
 
@@ -93,12 +105,13 @@ namespace AddNewItemComponentUnitTests {
         ClarityModule,
         NoopAnimationsModule,
         CoreModule,
+        NgxErrorsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(testRoutes)
       ],
       declarations: [AddNewItemComponent, RouterTestComponent],
-      providers: []
+      providers: [AddNewItemUseCaseModule.providers()]
     })
       .compileComponents();
   }

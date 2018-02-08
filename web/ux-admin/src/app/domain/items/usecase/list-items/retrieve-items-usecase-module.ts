@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable, Provider} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
-export namespace AddNewItemUseCaseModule {
+export namespace RetrieveItemsUseCaseModule {
 
 
   export function providers(): Provider[] {
@@ -23,7 +23,7 @@ export namespace AddNewItemUseCaseModule {
       return new AsyncHttpCommand<RequestPayload, UseCaseResponse>(new HttpContextBuilder()
         .http(this.http)
         .uri(HttpUseCase.API_PATH)
-        .method(HttpCommandMethod.POST)
+        .method(HttpCommandMethod.GET)
         .build())
         .execute(request);
     }
@@ -49,12 +49,14 @@ export namespace AddNewItemUseCaseModule {
   }
 
   interface RequestPayload {
-    code: string;
-    name: string;
-    description: string;
+    page: string;
+    noOfRows: string;
   }
 
   class UseCaseResponse {
+    code: string;
+    name: string;
+    description: string;
   }
 
   export class PayloadBuilder {
@@ -64,19 +66,13 @@ export namespace AddNewItemUseCaseModule {
       this.buildingRequest = <any>{};
     }
 
-    code(code: string) {
-      this.buildingRequest.code = code;
+    page(page: string) {
+      this.buildingRequest.page = page;
       return this;
     }
 
-    name(name: string) {
-      this.buildingRequest.name = name;
-      return this;
-    }
-
-
-    description(description: string) {
-      this.buildingRequest.description = description;
+    noOfRows(noOfRows: string) {
+      this.buildingRequest.noOfRows = noOfRows;
       return this;
     }
 

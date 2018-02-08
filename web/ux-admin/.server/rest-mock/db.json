@@ -12,6 +12,20 @@
       "beginningOfYear": 2016
     }
   ],
+  "items": [
+    {
+      "id": 1,
+      "code": "CODE-12121",
+      "name": "Pani Puri",
+      "description": "Girls love it."
+    },
+    {
+      "code": "sdfsdfs",
+      "name": "sdfsf",
+      "description": "sdfsf",
+      "id": 3
+    }
+  ],
   "users": [
     {
       "id": 1,
