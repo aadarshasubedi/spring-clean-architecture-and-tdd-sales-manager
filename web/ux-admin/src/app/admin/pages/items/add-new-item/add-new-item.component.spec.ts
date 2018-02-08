@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {AdminViewRoutes} from '../../../../domain/routes/routes';
 import {By} from '@angular/platform-browser';
+import {AddNewItemUseCaseModule} from '../../../../domain/items';
 
 describe('AddNewItemComponent', () => {
   let component: AddNewItemComponent;
@@ -48,7 +49,12 @@ describe('AddNewItemComponent', () => {
     });
   }));
 
-  it('should code input field only allow max 20 char', async(() => {
+  it(`should code contains prefix `, async(() => {
+    component.itemForm.setValue(AddNewItemComponentUnitTests.payloadWithCodeDoesNotContainsPrefix);
+    fixture.detectChanges();
+    fixture.whenStable().then(value => {
+      expect(component.itemForm.controls['code'].valid).toEqual(false);
+    });
   }));
 
   it('should create', () => {
@@ -98,6 +104,18 @@ namespace AddNewItemComponentUnitTests {
   }
 
   export const validPayload = {};
+
+  export const payloadWithCodeDoesNotContainsPrefix = new AddNewItemUseCaseModule.PayloadBuilder()
+    .code('BHUWAN')
+    .name('PaniPuri')
+    .description('Lovely item for girls.')
+    .build();
+
+  export const payloadWithCodeDoesNotContainsPrefix = new AddNewItemUseCaseModule.PayloadBuilder()
+    .code('CODE-BHUWAN')
+    .name('PaniPuri')
+    .description('Lovely item for girls.')
+    .build();
 
   export const violations: Violation[] = [{
     path: 'name',

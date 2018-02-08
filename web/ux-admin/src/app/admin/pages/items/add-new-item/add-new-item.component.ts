@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {AbstractHttpUseCaseFormComponent} from '../../../../api';
+import {AddNewItemUseCaseModule} from '../../../../domain/items';
 
 @Component({
   selector: 'cloud-sales-add-new-item',
@@ -9,11 +10,7 @@ import {AbstractHttpUseCaseFormComponent} from '../../../../api';
 })
 export class AddNewItemComponent extends AbstractHttpUseCaseFormComponent implements OnInit {
 
-  itemForm: FormGroup = new FormGroup({
-    'code': new FormControl('', Validators.pattern('CODE-\w+')),
-    'name': new FormControl(),
-    'description': new FormControl()
-  });
+  itemForm: FormGroup = AddNewItemUseCaseModule.UseCaseForm.create();
 
   constructor() {
     super();

@@ -2,8 +2,11 @@ import {AsyncHttpCommand, AsyncUseCase, BASE_URI, HttpCommandMethod, HttpContext
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Provider} from '@angular/core';
+import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
 export namespace AddNewItemUseCaseModule {
+
+  export const moduleName = '[AddNewItemUseCaseModule]';
 
   export function providers(): Provider[] {
     return [HttpUseCase];
@@ -27,17 +30,28 @@ export namespace AddNewItemUseCaseModule {
     }
   }
 
- export const moduleName = '[AddNewItemUseCaseModule]';
+  export class UseCaseForm {
+
+    static create(): FormGroup {
+      return new FormGroup({
+        'code': new FormControl('', UseCaseFormValidators.code),
+        'name': new FormControl('', [Validators.required]),
+        'description': new FormControl('')
+      });
+    }
+  }
+
+  export class UseCaseFormValidators {
+    static CODE_PREFIX = 'CODE-';
+    static code: ValidatorFn[] = [
+      Validators.pattern(UseCaseFormValidators.CODE_PREFIX + '\w+')
+    ];
+  }
 
   interface RequestPayload {
+    code: string;
     name: string;
-    address: string;
-    contactPerson: string;
-    country: string;
-    stateCode: string;
-    telephone: string;
-    email: string;
-    beginningOfYear: number;
+    description: string;
   }
 
   class UseCaseResponse {
@@ -50,49 +64,26 @@ export namespace AddNewItemUseCaseModule {
       this.buildingRequest = <any>{};
     }
 
-    name(name: string): PayloadBuilder {
+    code(code: string) {
+      this.buildingRequest.code = code;
+      return this;
+    }
+
+    name(name: string) {
       this.buildingRequest.name = name;
       return this;
     }
 
-    address(address: string): PayloadBuilder {
-      this.buildingRequest.address = address;
-      return this;
-    }
 
-    beginningOfYear(beginningOfYear: number): PayloadBuilder {
-      this.buildingRequest.beginningOfYear = beginningOfYear;
-      return this;
-    }
-
-    contactPerson(contactPerson: string): PayloadBuilder {
-      this.buildingRequest.contactPerson = contactPerson;
-      return this;
-    }
-
-    email(email: string): PayloadBuilder {
-      this.buildingRequest.email = email;
-      return this;
-    }
-
-    country(country: string): PayloadBuilder {
-      this.buildingRequest.country = country;
-      return this;
-    }
-
-    stateCode(stateCode: string): PayloadBuilder {
-      this.buildingRequest.stateCode = stateCode;
-      return this;
-    }
-
-    telephone(telephone: string): PayloadBuilder {
-      this.buildingRequest.telephone = telephone;
+    description(description: string) {
+      this.buildingRequest.description = description;
       return this;
     }
 
     build(): RequestPayload {
       return this.buildingRequest;
     }
+
   }
 
 }
