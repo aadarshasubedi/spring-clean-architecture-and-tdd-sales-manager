@@ -49,7 +49,7 @@ describe('AddNewItemComponent', () => {
     });
   }));
 
-  it(`should code contains prefix `, async(() => {
+  it(`should code contains prefix "${AddNewItemUseCaseModule.UseCaseFormValidators.CODE_PREFIX}"`, async(() => {
     component.itemForm.setValue(AddNewItemComponentUnitTests.payloadWithCodeDoesNotContainsPrefix);
     fixture.detectChanges();
     fixture.whenStable().then(value => {
