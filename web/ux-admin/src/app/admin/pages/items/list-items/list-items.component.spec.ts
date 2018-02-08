@@ -22,4 +22,8 @@ describe('ListItemsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should render list of items on grid`, async(() => {
+
+  }));
 });
