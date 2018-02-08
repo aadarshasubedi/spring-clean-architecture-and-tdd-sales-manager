@@ -1,9 +1,9 @@
-import {AsyncHttpCommand, AsyncUseCase, BASE_URI, HttpCommandMethod, HttpContextBuilder} from '../../api';
+import {AsyncHttpCommand, AsyncUseCase, BASE_URI, HttpCommandMethod, HttpContextBuilder} from '../../../../api';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Provider} from '@angular/core';
 
-export namespace RegisterNewCompanyUseCaseModule {
+export namespace AddNewItemUseCaseModule {
 
   export function providers(): Provider[] {
     return [HttpUseCase];
@@ -27,7 +27,7 @@ export namespace RegisterNewCompanyUseCaseModule {
     }
   }
 
-  const moduleName = '[AddNewItemUseCaseModule]';
+ export const moduleName = '[AddNewItemUseCaseModule]';
 
   interface RequestPayload {
     name: string;

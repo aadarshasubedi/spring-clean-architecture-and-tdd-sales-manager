@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AbstractHttpUseCaseFormComponent} from '../../api';
 import {LoginUseCaseModule} from '../../domain/securities';
-import {ViewRoutes} from '../../domain/sales';
+import {ViewRoutes} from '../../domain/routes';
 import {Router} from '@angular/router';
 import {SessionHandleUseCaseModule} from '../../domain/securities/session-handle-usecase-module';
 

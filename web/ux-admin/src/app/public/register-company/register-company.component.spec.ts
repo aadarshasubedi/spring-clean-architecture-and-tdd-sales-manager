@@ -10,11 +10,12 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../../domain/sales/index';
+import {RegisterNewCompanyUseCaseModule} from '../../domain/sales';
 import {Router, Routes} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import {Violation} from '../../api/index';
+import {Violation} from '../../api';
 import {CoreModule} from '../../core/core.module';
+import {ViewRoutes} from '../../domain/routes';
 
 describe('RegisterCompanyComponent Unit Tests', () => {
   let component: RegisterCompanyComponent;

@@ -10,6 +10,8 @@ import {Violation} from '../../../../api';
 import {ClarityModule} from '@clr/angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {AdminViewRoutes} from '../../../../domain/routes/routes';
+import {By} from '@angular/platform-browser';
 
 describe('AddNewItemComponent', () => {
   let component: AddNewItemComponent;
@@ -26,6 +28,29 @@ describe('AddNewItemComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should rendered add new item form with needed fields', async(() => {
+    const expectedRegisterFormFieldNames = [
+      'code', 'name', 'description'
+    ];
+    expectedRegisterFormFieldNames.forEach(expectedField => {
+      const de = fixture.debugElement.query(By.css('form input[formcontrolname="' + expectedField + '"]'));
+      const textAreaDe = fixture.debugElement.query(By.css('form textarea[formcontrolname="' + expectedField + '"]'));
+      let matchAny = false;
+      if (de) {
+        expect(de.attributes['id']).toBe(expectedField);
+        matchAny = true;
+      }
+      if (textAreaDe) {
+        expect(textAreaDe.attributes['id']).toBe(expectedField);
+        matchAny = true;
+      }
+      expect(matchAny).toEqual(true);
+    });
+  }));
+
+  it('should code input field only allow max 20 char', async(() => {
+  }));
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -36,7 +61,7 @@ namespace AddNewItemComponentUnitTests {
 
   @Component({
     template: `
-      <h1>Welcome to dashboard</h1>
+      <h1>Welcome to RouterTestComponent</h1>
     `
   })
   export class RouterTestComponent implements OnInit {
@@ -51,7 +76,7 @@ namespace AddNewItemComponentUnitTests {
 
   export const testRoutes: Routes = [
     {
-      path: 'dashboard',
+      path: AdminViewRoutes.LIST_ITEMS,
       component: RouterTestComponent
     }
   ];

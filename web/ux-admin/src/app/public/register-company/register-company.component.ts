@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterNewCompanyUseCaseModule, ViewRoutes} from '../../domain/sales';
+import {RegisterNewCompanyUseCaseModule} from '../../domain/sales';
 import {AbstractHttpUseCaseFormComponent} from '../../api';
+import {ViewRoutes} from '../../domain/routes';
 
 @Component({
   templateUrl: './register-company.component.html',
