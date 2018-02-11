@@ -14,7 +14,6 @@
         <module>configuration</module>
         <module>data-providers</module>
         <module>entrypoints</module>
-        <module>integration-tests</module>
     </modules>
 
     <artifactId>sales</artifactId>

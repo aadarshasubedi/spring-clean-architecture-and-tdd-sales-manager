@@ -4,8 +4,10 @@ import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.Registe
 import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyUseCase;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,6 +24,7 @@ public class RegisterNewCompanyEndpoint {
     }
 
     @PostMapping(API_PATH)
+    @ResponseStatus(HttpStatus.CREATED)
     public RegisterNewCompanyResponseRepresentation registerNewCompany(
             @RequestBody RegisterNewCompanyRequest request) {
         log.info("Registering new company: {}", request.toString());
