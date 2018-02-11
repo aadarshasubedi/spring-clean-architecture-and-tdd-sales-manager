@@ -16,6 +16,7 @@
         <module>entrypoints</module>
     </modules>
 
+
     <artifactId>sales</artifactId>
 
     <dependencies>
