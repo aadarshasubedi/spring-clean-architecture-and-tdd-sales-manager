@@ -1,0 +1,1 @@
+export {ViewRoutes} from './routes';

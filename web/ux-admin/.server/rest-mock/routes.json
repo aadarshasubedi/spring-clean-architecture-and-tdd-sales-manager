@@ -1,0 +1,6 @@
+{
+  "/api/v1/companies": "/companies",
+  "/api/v1/companies/register": "/companies",
+  "/api/v1/login": "/users/1",
+  "/api/v1/items": "/items"
+}

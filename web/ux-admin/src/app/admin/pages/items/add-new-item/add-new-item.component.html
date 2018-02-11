@@ -1,0 +1,43 @@
+<div class="spinner" *ngIf="loadingFlag">
+  Loading...
+</div>
+<cloud-sales-http-response-error [responseError]="httpResponseError"
+                                 *ngIf="errorFlag"></cloud-sales-http-response-error>
+<form [formGroup]="itemForm">
+  <section class="form-block">
+    <label>Add New Item</label>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="code">Item Code</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="text" formControlName="code" id="code">
+        <div [ngxErrors]="'code'">
+          <div [ngxError]="['required']" [when]="['dirty', 'touched']">
+            Item code must be required.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="name">Item Name</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="text" formControlName="name" id="name">
+        <div [ngxErrors]="'name'">
+          <div [ngxError]="['required']" [when]="['dirty', 'touched']">
+            Item name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="description">Description</label>
+      </div>
+      <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+        <textarea formControlName="description" rows="5" class="form-control" id="description"></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addNewItem()">Save</button>
+  </section>
+</form>

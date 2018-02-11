@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+
+  <form class="login" [formGroup]="loginForm">
+    <label class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Cloud Sales Manager
+      <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+    </label>
+    <div class="login-group">
+      <input class="username" type="text" formControlName="username" placeholder="Username">
+      <input class="password" type="password" formControlName="password" placeholder="Password">
+      <div class="checkbox">
+        <input type="checkbox" formControlName="rememberMe" id="rememberMe">
+        <label for="rememberMe">
+          Remember me
+        </label>
+      </div>
+      <div class="spinner" *ngIf="loadingFlag">
+        Loading...
+      </div>
+      <div class="error active" *ngIf="errorFlag">
+        Invalid user name or password
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="doLogin()" [disabled]="!loginForm.valid">NEXT</button>
+      <a routerLink="/register-your-company" class="signup">Sign up for a Company ID</a>
+    </div>
+  </form>
+</div>

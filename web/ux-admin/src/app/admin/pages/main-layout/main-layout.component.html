@@ -1,0 +1,32 @@
+<clr-main-container>
+  <clr-header>
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="clr-icon clr-clarity-logo"></span>
+        <span class="title">Cloud Sales Manager</span>
+      </a>
+    </div>
+    <div class="header-actions">
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <a routerLink="/csm/dashboard" [routerLinkActive]="'active'" class="nav-link">
+          Dashboard
+        </a>
+        <section class="nav-group collapsible">
+          <input id="itemsManagementNav" type="checkbox">
+          <label for="itemsManagementNav">Items Management</label>
+          <ul class="nav-list">
+            <li><a class="nav-link" routerLink="/csm/items/add" [routerLinkActive]="'active'">Add New Item</a></li>
+            <li><a class="nav-link" routerLink="/csm/items" [routerLinkActive]="'active'">List Items</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+  </div>
+</clr-main-container>
