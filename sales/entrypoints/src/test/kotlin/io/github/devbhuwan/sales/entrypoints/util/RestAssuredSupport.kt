@@ -8,7 +8,7 @@ import io.restassured.mapper.factory.Jackson2ObjectMapperFactory
 
 
 object ObjectMapperConfigurator {
-    val objectMapper = ObjectMapper().registerModule(KotlinModule())
+    private val objectMapper = ObjectMapper().registerModule(KotlinModule())
 
     init {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -22,9 +22,4 @@ object ObjectMapperConfigurator {
     }
 }
 
-val objectMapperFactory = object : Jackson2ObjectMapperFactory {
-
-    override fun create(cls: Class<*>?, charset: String?): ObjectMapper {
-        return ObjectMapperConfigurator.get()
-    }
-}
+val objectMapperFactory = Jackson2ObjectMapperFactory { cls, charset -> ObjectMapperConfigurator.get() }

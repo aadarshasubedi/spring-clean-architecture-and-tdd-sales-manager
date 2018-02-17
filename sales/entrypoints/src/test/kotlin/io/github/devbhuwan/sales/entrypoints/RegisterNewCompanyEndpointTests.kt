@@ -1,4 +1,4 @@
-package io.github.devbhuwan.sales.entrypoints;
+package io.github.devbhuwan.sales.entrypoints
 
 import com.github.javafaker.Faker
 import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyRequest

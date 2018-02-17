@@ -8,9 +8,7 @@ import io.restassured.RestAssured
 import io.restassured.config.ObjectMapperConfig
 import io.restassured.config.RestAssuredConfig
 
-object QuickRun : Tag()
 object Integration : Tag()
-object Journey : Tag()
 
 object IntegrationTestBase {
 
@@ -18,6 +16,7 @@ object IntegrationTestBase {
 
 }
 
+@Suppress("unused")
 object GlobalTestSuiteInitializer : ProjectConfig() {
 
     private var started: Long = 0
