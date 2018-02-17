@@ -4,7 +4,7 @@ import io.github.devbhuwan.sales.domain.model.entity.Company;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = ToCompanyMapper.MAPPER_DEFAULT_COMPONENT_MODEL)
-interface ToCompanyMapper {
+public interface ToCompanyMapper {
 
     String MAPPER_DEFAULT_COMPONENT_MODEL = "spring";
 

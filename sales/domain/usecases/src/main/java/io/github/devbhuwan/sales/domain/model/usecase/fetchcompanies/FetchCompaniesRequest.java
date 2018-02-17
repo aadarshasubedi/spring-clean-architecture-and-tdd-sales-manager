@@ -1,15 +1,12 @@
 package io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.devbhuwan.core.usecase.Request;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import org.immutables.value.Value;
 
-@ToString
-@Getter
-@Builder
-@RequiredArgsConstructor
-public class FetchCompaniesRequest implements Request {
-
+@Value.Immutable
+@JsonSerialize(as = ImmutableFetchCompaniesRequest.class)
+@JsonDeserialize(as = ImmutableFetchCompaniesRequest.class)
+public interface FetchCompaniesRequest extends Request {
 }

@@ -28,7 +28,7 @@ public class RegisterNewCompanyUseCaseTest {
     @Test
     public void givenNotValidRequest_whenExecute_thenShouldThrowConstrainViolationException() {
         Assertions.assertThatExceptionOfType(DomainNotValidException.class)
-                .isThrownBy(() -> registerNewCompanyUseCase.execute(RegisterNewCompanyRequest.builder().build(), RegisterNewCompanyResponse.EMPTY));
+                .isThrownBy(() -> registerNewCompanyUseCase.execute(RegisterNewCompanyRequest.builder().build()));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class RegisterNewCompanyUseCaseTest {
                 .stateCode("2131")
                 .telephone("+93242424324")
                 .build();
-        registerNewCompanyUseCase.execute(validRequest, null);
+        registerNewCompanyUseCase.execute(validRequest);
         verify(companiesGateway, times(1)).persistNew(any(Company.class));
     }
 }

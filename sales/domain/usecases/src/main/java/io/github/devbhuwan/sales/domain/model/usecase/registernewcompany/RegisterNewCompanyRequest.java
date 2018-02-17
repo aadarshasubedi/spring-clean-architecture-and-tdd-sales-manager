@@ -2,11 +2,15 @@ package io.github.devbhuwan.sales.domain.model.usecase.registernewcompany;
 
 import io.github.devbhuwan.core.usecase.Request;
 import io.github.devbhuwan.sales.domain.model.validation.constraint.Mandatory;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RegisterNewCompanyRequest implements Request {
 
     @Mandatory
@@ -23,4 +27,5 @@ public class RegisterNewCompanyRequest implements Request {
     private String email;
     @Mandatory
     private Integer beginningOfYear;
+
 }

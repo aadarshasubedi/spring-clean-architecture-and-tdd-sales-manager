@@ -1,17 +1,21 @@
 package io.github.devbhuwan.sales.domain.model.validation;
 
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
-@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
 public class DomainViolation {
-    private final Object path;
-    private final String message;
+    private String path;
+    private String message;
 
     public static <T> Set<DomainViolation> convertToViolations(Set<ConstraintViolation<T>> violations) {
         return violations.stream().map(DomainViolation::toViolation)
@@ -19,6 +23,6 @@ public class DomainViolation {
     }
 
     private static DomainViolation toViolation(ConstraintViolation<?> violation) {
-        return new DomainViolation(violation.getPropertyPath(), violation.getMessage());
+        return new DomainViolation(violation.getPropertyPath().toString(), violation.getMessage());
     }
 }

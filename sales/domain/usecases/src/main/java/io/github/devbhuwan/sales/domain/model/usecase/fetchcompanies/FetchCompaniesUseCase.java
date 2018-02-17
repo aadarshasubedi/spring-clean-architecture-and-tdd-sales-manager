@@ -1,6 +1,24 @@
 package io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies;
 
-import io.github.devbhuwan.core.usecase.UseCase;
+import io.github.devbhuwan.core.usecase.IOUseCase;
+import io.github.devbhuwan.sales.domain.model.gateway.CompaniesGateway;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
-public interface FetchCompaniesUseCase extends UseCase<FetchCompaniesRequest, FetchCompaniesResponse> {
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class FetchCompaniesUseCase implements IOUseCase<FetchCompaniesRequest, FetchCompaniesResponse> {
+
+    private final CompaniesGateway companiesGateway;
+
+    @Override
+    public FetchCompaniesResponse execute(FetchCompaniesRequest request) {
+        return ImmutableFetchCompaniesResponse
+                .builder()
+                .addAllCompanies(companiesGateway.findAll())
+                .build();
+    }
+
 }
