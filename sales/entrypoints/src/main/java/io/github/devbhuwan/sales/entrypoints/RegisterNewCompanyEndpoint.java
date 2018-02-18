@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.entrypoints;
 
-import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyRequest;
-import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyUseCase;
+import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyRequest;
+import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

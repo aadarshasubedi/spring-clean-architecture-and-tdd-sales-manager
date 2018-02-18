@@ -1,6 +1,6 @@
 package io.github.devbhuwan.sales.entrypoints
 
-import io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies.ImmutableFetchCompaniesRequest
+import io.github.devbhuwan.sales.usecase.fetchcompanies.ImmutableFetchCompaniesRequest
 import io.github.devbhuwan.sales.entrypoints.SalesEndpointFunctions.getCompaniesResponse
 import io.kotlintest.matchers.shouldNotBe
 import io.kotlintest.specs.StringSpec

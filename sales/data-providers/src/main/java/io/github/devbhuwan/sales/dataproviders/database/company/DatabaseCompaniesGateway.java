@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.dataproviders.database.company;
 
-import io.github.devbhuwan.sales.domain.model.entity.Company;
-import io.github.devbhuwan.sales.domain.model.gateway.CompaniesGateway;
+import io.github.devbhuwan.sales.entity.Company;
+import io.github.devbhuwan.sales.gateway.CompaniesGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

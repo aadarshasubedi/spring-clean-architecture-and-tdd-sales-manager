@@ -1,8 +1,8 @@
 package io.github.devbhuwan.sales.entrypoints;
 
-import io.github.devbhuwan.sales.domain.model.entity.Company;
-import io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies.FetchCompaniesRequest;
-import io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies.FetchCompaniesUseCase;
+import io.github.devbhuwan.sales.entity.Company;
+import io.github.devbhuwan.sales.usecase.fetchcompanies.FetchCompaniesRequest;
+import io.github.devbhuwan.sales.usecase.fetchcompanies.FetchCompaniesUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

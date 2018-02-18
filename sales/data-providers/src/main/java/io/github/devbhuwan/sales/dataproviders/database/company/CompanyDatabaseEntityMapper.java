@@ -1,6 +1,6 @@
 package io.github.devbhuwan.sales.dataproviders.database.company;
 
-import io.github.devbhuwan.sales.domain.model.entity.Company;
+import io.github.devbhuwan.sales.entity.Company;
 import org.mapstruct.Mapper;
 
 import java.util.List;

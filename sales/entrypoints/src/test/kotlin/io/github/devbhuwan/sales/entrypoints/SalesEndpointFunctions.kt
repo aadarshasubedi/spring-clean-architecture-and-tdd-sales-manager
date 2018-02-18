@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.entrypoints
 
-import io.github.devbhuwan.sales.domain.model.usecase.fetchcompanies.FetchCompaniesRequest
-import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyRequest
+import io.github.devbhuwan.sales.usecase.fetchcompanies.FetchCompaniesRequest
+import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyRequest
 import io.restassured.RestAssured
 import io.restassured.builder.RequestSpecBuilder
 import io.restassured.response.ValidatableResponse

@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.entrypoints
 
 import com.github.javafaker.Faker
-import io.github.devbhuwan.sales.domain.model.usecase.registernewcompany.RegisterNewCompanyRequest
+import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyRequest
 import io.github.devbhuwan.sales.entrypoints.SalesEndpointFunctions.postRegisterNewCompanyResponse
 import io.kotlintest.matchers.shouldNotBe
 import io.kotlintest.specs.StringSpec

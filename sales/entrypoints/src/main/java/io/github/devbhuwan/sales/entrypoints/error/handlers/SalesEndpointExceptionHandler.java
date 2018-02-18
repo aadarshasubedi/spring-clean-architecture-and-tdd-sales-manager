@@ -1,7 +1,7 @@
 package io.github.devbhuwan.sales.entrypoints.error.handlers;
 
-import io.github.devbhuwan.sales.domain.model.validation.DomainNotValidException;
-import io.github.devbhuwan.sales.domain.model.validation.DomainViolation;
+import io.github.devbhuwan.sales.validation.DomainNotValidException;
+import io.github.devbhuwan.sales.validation.DomainViolation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
