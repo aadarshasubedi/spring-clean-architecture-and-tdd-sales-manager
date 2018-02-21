@@ -1,5 +1,6 @@
 package io.github.devbhuwan.sales.entrypoints;
 
+import io.github.devbhuwan.core.usecase.config.UseCaseInvoker;
 import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyRequest;
 import io.github.devbhuwan.sales.usecase.registernewcompany.RegisterNewCompanyUseCase;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,14 @@ public class RegisterNewCompanyEndpoint {
     private static final String API_PATH = "/companies/register";
 
     private final RegisterNewCompanyUseCase registerNewCompanyUseCase;
+    private final UseCaseInvoker useCaseInvoker;
 
     @PostMapping(API_PATH)
     @ResponseStatus(HttpStatus.CREATED)
     public void registerNewCompany(
             @RequestBody RegisterNewCompanyRequest request) {
         log.info("Registering new company: {}", request.toString());
-        registerNewCompanyUseCase.execute(request);
+        useCaseInvoker.invoke(registerNewCompanyUseCase, request);
     }
 
 }

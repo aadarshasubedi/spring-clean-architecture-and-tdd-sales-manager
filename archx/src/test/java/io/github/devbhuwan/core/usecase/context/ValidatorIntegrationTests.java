@@ -37,7 +37,7 @@ public class ValidatorIntegrationTests {
     static class ValidatorTestsConfig {
 
         @Bean
-        public ValidatingUseCaseEventListener validatingListener(ObjectFactory<UseCase> useCases) {
+        public ValidatingUseCaseEventListener validatingListener(ObjectFactory<UseCase<?>> useCases) {
 
             ValidatingUseCaseEventListener listener = new ValidatingUseCaseEventListener(useCases);
             listener.addValidator("beforeExecute", new PersonRequestValidator());

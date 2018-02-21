@@ -1,4 +1,4 @@
-package io.github.devbhuwan.sales;
+package io.github.devbhuwan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

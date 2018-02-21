@@ -18,10 +18,10 @@ import java.util.Map;
 @Slf4j
 public class ValidatingUseCaseEventListener extends AbstractUseCaseEventListener<Object> {
 
-    private final ObjectFactory<UseCase> useCasesFactory;
+    private final ObjectFactory<UseCase<?>> useCasesFactory;
     private final MultiValueMap<String, Validator> validators;
 
-    public ValidatingUseCaseEventListener(ObjectFactory<UseCase> useCasesFactory) {
+    public ValidatingUseCaseEventListener(ObjectFactory<UseCase<?>> useCasesFactory) {
 
         Assert.notNull(useCasesFactory, "UseCases must not be null!");
 

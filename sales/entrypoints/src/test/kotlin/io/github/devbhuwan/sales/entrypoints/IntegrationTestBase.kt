@@ -1,6 +1,6 @@
 package io.github.devbhuwan.sales.entrypoints
 
-import io.github.devbhuwan.sales.SalesServiceApplication
+import io.github.devbhuwan.SalesServiceApplication
 import io.github.devbhuwan.sales.entrypoints.util.objectMapperFactory
 import io.kotlintest.ProjectConfig
 import io.kotlintest.Tag
